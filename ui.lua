@@ -3,8 +3,8 @@ local InputService = game:GetService("UserInputService")
 
 local AtlasLib = {
 	["Theme"] = {
-	        ["Font"] = "RobotoMono",
-		["AccentColor"] = Color3.fromRGB(20, 20, 20),
+	    ["Font"] = "RobotoMono",
+		["AccentColor"] = Color3.fromRGB(60, 60, 60),
 		["FontColor"] = Color3.fromRGB(255,255,255),
 		["HideKey"] = "LeftControl"
 	},
@@ -1040,8 +1040,8 @@ function AtlasLib.Main(Name,X,Y)
                 local Checked = CreateModule.Instance("Frame",{
                     Parent = Checkbox;
                     Name = 'Cube';
-                    BackgroundTransparency = 0;
-                    BackgroundColor3 = (IsActive.Value and AtlasLib["Theme"]["AccentColor"] or not IsActive.Value and Darker(Color3.fromRGB(32,32,37),1.15));
+                    BackgroundTransparency = (IsActive.Value and 0 or 1);
+                    BackgroundColor3 = AtlasLib["Theme"]["AccentColor"];
                     BorderSizePixel = 0;
                     AnchorPoint = Vector2.new(0,0.5);
                     Position = UDim2.new(0,5,0.5,0);
@@ -1064,10 +1064,10 @@ function AtlasLib.Main(Name,X,Y)
                 IsActive.Changed:Connect(function()
                     if IsActive.Value then
                         TweenService:Create(Label,TweenInfo.new(0.3),{TextColor3 = AtlasLib["Theme"]["FontColor"]}):Play()
-                        TweenService:Create(Checked,TweenInfo.new(0.3),{BackgroundColor3 = Brighter(AtlasLib["Theme"]["AccentColor"],1.5)}):Play()
+                        TweenService:Create(Checked,TweenInfo.new(0.3),{BackgroundTransparency = 0, BackgroundColor3 = AtlasLib["Theme"]["AccentColor"]}):Play()
                         pcall(func, IsActive.Value)
                     else
-                        TweenService:Create(Checked,TweenInfo.new(0.3),{BackgroundColor3 = Color3.fromRGB(0,0,0)}):Play()
+                        TweenService:Create(Checked,TweenInfo.new(0.3),{BackgroundTransparency = 1}):Play()
                         TweenService:Create(Label,TweenInfo.new(0.3),{TextColor3 = Darker(AtlasLib["Theme"]["FontColor"],1.5)}):Play()
                         pcall(func, IsActive.Value)
                     end
