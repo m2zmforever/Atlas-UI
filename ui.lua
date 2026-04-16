@@ -500,7 +500,7 @@ function AtlasLib.Main(Name,X,Y)
         end)
     end
 
-    InMain.Nofitication = InMain.Notification
+InMain.Notification = InMain.Notification
 
 	function InMain.Tab(Text)
         TabCount += 1
@@ -902,7 +902,7 @@ function AtlasLib.Main(Name,X,Y)
                         ["OEM102"] = "<",
                         ["MouseButton2"] = "RMB",
                         ["MouseButton1"] = "LMB",
-                        ["MauseButton3"] = "MMB"
+                        ["MouseButton3"] = "MMB"
                     }
                     return keyMap[keyString] or keyString
                 end
